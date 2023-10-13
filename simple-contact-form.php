@@ -23,6 +23,9 @@ class SimpleContactForm {
         // action for loading assest 
         add_action('wp_enqueue_scripts', array($this,'load_assests'));
 
+        // short code for the contact form
+        add_shortcode( 'contact-form', array($this,'contact_form'));
+
     }
 
     public function create_custom_post_type()
@@ -63,9 +66,31 @@ class SimpleContactForm {
         );
     
     }
+
+    public function contact_form()
+    {
+        // echo "<input type='text' name='name' id='name'>";
+        ?>
+        <div class="contact-form">
+            <form action="" method="post"></form>
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name">
+
+                    <label for="tel">Telephone Number</label>
+                    <input type="tel" name="tel" id="tel">
+
+                    <label for="email">Email Address</label>
+                    <input type="email" name="email" id="email">
+
+                    <label for="message">Message</label>
+                    <textarea name="message" id="" cols="30" rows="10"></textarea>
+
+                    <input type="submit" value="Submit">
+            </form>
+        </div>
+        <?php
+    }
 }
-
-
 
 $SimpleContactForm = new SimpleContactForm();
 
